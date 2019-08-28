@@ -30,7 +30,7 @@ sealed trait Option[+A] {
   def filter(f: A => Boolean): Option[A] = {
     this match {
       case None              => None
-      case Some(a) if (f(a)) => Some(a)
+      case Some(a) => if ((f(a)) == None) None else Some(a)
     }
   }
 }
@@ -47,3 +47,9 @@ def lookupByName(name: String): Option[Employee] = {
 val joeDepartment: Option[String] = lookupByName("Joe").map(_.department)
 
 print(joeDepartment)
+
+def mean(xs: Seq[Doble]): Option[Double] =
+  if (xs.isEmpty) None
+  else Some(xs.sum / xs.length)
+
+
