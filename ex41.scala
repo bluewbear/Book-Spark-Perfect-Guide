@@ -46,10 +46,19 @@ def lookupByName(name: String): Option[Employee] = {
 
 val joeDepartment: Option[String] = lookupByName("Joe").map(_.department)
 
-print(joeDepartment)
+//print(joeDepartment)
 
-def mean(xs: Seq[Doble]): Option[Double] =
+def mean(xs: Seq[Double]): Option[Double] = {
   if (xs.isEmpty) None
   else Some(xs.sum / xs.length)
+}
 
+def lift[A,B](f:A => B): Option[A] => Option[B] = a => a map f
 
+//def variance(xs: Seq[Double]): Option[Double] = {
+ // mean(xs) flapMap(m => mean(xs.map(x => math.pow(x - m, 2))))
+//}
+
+//val testSeq = for (i <- 1 to 5) yield i.toDouble
+//val result: Option[Double] = variance(testSeq)
+//print(result)
